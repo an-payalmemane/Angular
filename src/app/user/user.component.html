@@ -1,0 +1,62 @@
+
+<!--<h1> User Component </h1>
+<p>-------------DataBinding-----------</p>
+<p> Component to view Using interpolation and Property binding</p>
+<p [style.color]="color"> Hello {{name1}} </p>
+<p> two way Databinding</p>
+<input [(ngModel)]="email1" placeholder="Enter Email">
+<p> Email: {{email1}} </p>
+<p> View to component (event binding)</p>
+<button (click)="userFunc()">Click Me</button>  
+<p>---------------Directives----------- </p> 
+<p> ngStyle and ngClass</p>   
+<p [ngStyle]= "{ 'color': textColor, 'font-size': fontSize }">Directives</p>
+<p [ngClass] = "{ 'highlight' : isHighlight , 'bold' : isBold}"> This is the example of ngClass </p>
+<button (click)=" toggle()"> Click </button>
+<p>Structure Directives</p>
+<ul>
+    <li *ngFor="let item of Fruits">{{ item }}</li>
+</ul>
+<p>Example of ngIf</p>
+<button (click)="textFunc()">Click Me </button>
+<p *ngIf="isVisible"> Hello , this is ngIf Example </p>
+
+<p>-----------------Decorators-------------</p>
+<p class="highlight"> Message from parent is: {{msg}}</p>
+<button (click)="msgFunc()">Click to show msg</button>-->
+
+
+
+<h3>-----------------Reactive Form----------------</h3>
+<div class="container">
+    <form [formGroup]="user" (ngSubmit)=" userForm()">
+        <label>Name: </label>
+        <input type="text" placeholder="Enter your Name" formControlName="name">
+        <span *ngIf="formControls.name.invalid && formControls.name.touched">
+            Name is required and must be at least 3 characters.
+          </span>
+        <br>
+        <label>User Name: </label>
+        <input type="text" placeholder="Enter User Name" formControlName="username">
+        <span *ngIf="formControls.username.invalid && formControls.username.touched">
+            User Name is required and must be at least 5 characters.
+          </span><br>
+        <label>Email: </label>
+        <input type="email" placeholder="Enter your email" formControlName="email">
+        <span *ngIf="formControls.email.invalid && formControls.email.touched">
+            Email is required .
+          </span><br>
+        <label>password: </label>
+        <input type="password" placeholder="Enter your Name" formControlName="password">
+        <span *ngIf="formControls.password.invalid && formControls.password.touched">
+            Password is required and must be at least 8 characters.
+          </span><br>
+        <label>Confirm Your password: </label>
+        <input type="password" placeholder="Enter your Name" formControlName="confirmPass">
+        <span *ngIf="formControls.confirmPass.invalid && formControls.confirmPass.touched">
+            Password is required and must be at least 8 characters.
+          </span>
+          <span *ngIf="!passwordsMatch()">password doesn't matched </span><br>
+        <button >Submit</button>
+    </form>
+</div>
