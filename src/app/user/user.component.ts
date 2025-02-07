@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import {FormsModule, ReactiveFormsModule, FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
 @Component({
@@ -55,8 +55,31 @@ export class UserComponent  {
     if(this.user.valid){
       alert("Login SuccessFully ");
     }
+    
     this.user.reset();
   }
 
+  private fb= inject(FormBuilder);
+  registerForm = this.fb.group({
+    name: ['', Validators.required],
+    username: ['', [Validators.required, Validators.minLength(5)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    confirmPass: ['', [Validators.required, Validators.minLength(8)]]
+  });
+  get formControls1(){
+    return this.registerForm.controls;
+
+  }
+  passwordsMatch1(): boolean {
+    return this.registerForm.get('password')?.value === this.registerForm.get('confirmPass')?.value;
+  }
+  userForm1(){
+    if(this.registerForm.valid){
+      alert("Login SuccessFully ");
+    }
+
+    this.registerForm.reset();
+  }
 }
 

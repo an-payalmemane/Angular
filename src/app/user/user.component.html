@@ -27,36 +27,70 @@
 
 
 
-<h3>-----------------Reactive Form----------------</h3>
-<div class="container">
+<h1>Reactive Form</h1>
+<div class="container" style="float: left;">
+    <h2>Form Using FormGroup</h2>
     <form [formGroup]="user" (ngSubmit)=" userForm()">
         <label>Name: </label>
         <input type="text" placeholder="Enter your Name" formControlName="name">
-        <span *ngIf="formControls.name.invalid && formControls.name.touched">
+        <span *ngIf="formControls.name.invalid && formControls.name.touched" style="color: blue;">
             Name is required and must be at least 3 characters.
           </span>
         <br>
         <label>User Name: </label>
         <input type="text" placeholder="Enter User Name" formControlName="username">
-        <span *ngIf="formControls.username.invalid && formControls.username.touched">
+        <span *ngIf="formControls.username.invalid && formControls.username.touched" style="color: blue;">
             User Name is required and must be at least 5 characters.
           </span><br>
         <label>Email: </label>
         <input type="email" placeholder="Enter your email" formControlName="email">
-        <span *ngIf="formControls.email.invalid && formControls.email.touched">
+        <span *ngIf="formControls.email.invalid && formControls.email.touched" style="color: blue;">
             Email is required .
           </span><br>
         <label>password: </label>
         <input type="password" placeholder="Enter your Name" formControlName="password">
-        <span *ngIf="formControls.password.invalid && formControls.password.touched">
+        <span *ngIf="formControls.password.invalid && formControls.password.touched" style="color: blue;">
             Password is required and must be at least 8 characters.
           </span><br>
         <label>Confirm Your password: </label>
         <input type="password" placeholder="Enter your Name" formControlName="confirmPass">
-        <span *ngIf="formControls.confirmPass.invalid && formControls.confirmPass.touched">
+        <span *ngIf="formControls.confirmPass.invalid && formControls.confirmPass.touched" style="color: blue;">
             Password is required and must be at least 8 characters.
           </span>
-          <span *ngIf="!passwordsMatch()">password doesn't matched </span><br>
+          <span *ngIf="!passwordsMatch()" style="color: blue;">password doesn't matched </span><br>
         <button >Submit</button>
+    </form>
+</div>
+<div style="float: right;" class="container">
+  <h2>Form Using FormBuilder</h2>
+    <form [formGroup]="registerForm" (ngSubmit)=" userForm1()">
+        <label>Name: </label>
+        <input type="text" placeholder="Enter your Name" formControlName="name">
+        <span *ngIf="formControls1.name.invalid && formControls1.name.touched" style="color: red;">
+            Name is required and must be at least contain 3 characters.
+          </span>
+        <br>
+        <label>User Name: </label>
+        <input type="text" placeholder="Enter User Name" formControlName="username">
+        <span *ngIf="formControls1.username.invalid && formControls1.username.touched" style="color: red;">
+            User Name is required and must be at least contain  5 characters.
+          </span><br>
+        <label>Email: </label>
+        <input type="email" placeholder="Enter your email" formControlName="email">
+        <span *ngIf="formControls1.email.invalid && formControls1.email.touched" style="color: red;">
+            Please enter a valid email.
+          </span><br>
+        <label>password: </label>
+        <input type="password" placeholder="Enter your Name" formControlName="password">
+        <span *ngIf="formControls1.password.invalid && formControls1.password.touched" style="color: red;">
+            Password is required and must be at least 8 characters.
+          </span><br>
+        <label>Confirm Your password: </label>
+        <input type="password" placeholder="Enter your Name" formControlName="confirmPass">
+        <span *ngIf="formControls1.confirmPass.invalid && formControls1.confirmPass.touched" style="color: red;">
+            Password is required and must be at least 8 characters.
+          </span>
+          <span *ngIf="!passwordsMatch1()" style="color: red;">password doesn't matched </span><br>
+        <button>Submit</button>
     </form>
 </div>
