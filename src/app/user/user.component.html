@@ -91,6 +91,6 @@
             Password is required and must be at least 8 characters.
           </span>
           <span *ngIf="!passwordsMatch1()" style="color: red;">password doesn't matched </span><br>
-        <button>Submit</button>
+        <button type="submit" [disabled]="registerForm.invalid">Submit</button>
     </form>
 </div>
