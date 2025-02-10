@@ -1,1 +1,108 @@
-<p>example works!</p>
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row form-field">
+            <div class="input-field">
+                <label>Company Name:</label>
+                <input formControlName="companyName" placeholder="Enter company name" style="width: 30%;">
+                <span *ngIf="form.get('companyName')?.invalid && form.get('companyName')?.touched">
+                    Company name is required.
+                </span>
+
+                <label>Country:</label>
+                <input formControlName="country" placeholder="Enter country" style="width: 30%;">
+                <div *ngIf="form.get('country')?.invalid && form.get('country')?.touched">
+                    Country is required.
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label>Street:</label>
+                <input formControlName="street" placeholder="Enter street" size="30">
+                <div *ngIf="form.get('street')?.invalid && form.get('street')?.touched">
+                    Street is required.
+                </div>
+
+                <label>City:</label>
+                <input formControlName="city" placeholder="Enter city" size="30">
+                <div *ngIf="form.get('city')?.invalid && form.get('city')?.touched">
+                    City is required.
+                </div>
+
+                <label>Pincode:</label>
+                <input formControlName="pincode" placeholder="Enter pincode" size="30">
+                <div *ngIf="form.get('pincode')?.invalid && form.get('pincode')?.touched">
+                    Pincode is required and must be 6 digits.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <div formArrayName="units">
+                <div *ngFor="let unit of units.controls; let i = index" [formGroupName]="i">
+                    <label>Unit Name:</label>
+                    <input formControlName="unitName" placeholder="Enter unit name">
+
+                    <label>Quantity:</label>
+                    <input formControlName="quantity" placeholder="Enter quantity" type="number">
+
+                    <label>Unit Price:</label>
+                    <input formControlName="unitPrice" placeholder="Enter unit price" type="number">
+
+                    <label>Total Price:</label>
+                    <input formControlName="totalPrice" placeholder="Total price" type="number">
+
+                    <button type="button" (click)="removeUnit(i)">Remove Unit</button>
+
+                    <div *ngIf="unit.get('unitName')?.invalid && unit.get('unitName')?.touched">
+                        Unit name is required.
+                    </div>
+                    <div *ngIf="unit.get('quantity')?.invalid && unit.get('quantity')?.touched">
+                        Quantity is required and must be at least 1.
+                    </div>
+                    <div *ngIf="unit.get('unitPrice')?.invalid && unit.get('unitPrice')?.touched">
+                        Unit price is required and must be at least 0.
+                    </div>
+                </div>
+                <button type="button" (click)="addUnit()">Add Unit</button>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+        <button type="button" (click)="ShowTable()"> Show Units</button>
+    </form>
+</div>
+
+<div *ngIf="table && submittedData.length > 0">
+    <h3>Form Data in Table Format</h3>
+    <div >
+        
+        <table border="1">
+            <tr>
+                <th>Company Name</th>
+                <th>Country</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>Pincode</th>
+                <th>Unit Name</th>
+                <th>Total Price</th>
+            </tr>
+            <tr *ngFor="let unit of submittedData; let i = index" (click)="patchForm(unit)">
+                <td>{{ unit.companyName }}</td>
+                <td>{{ unit.country}}</td>
+                <td>{{ unit.street }}</td>
+                <td>{{ unit.city }}</td>
+                <td>{{ unit.pincode }}</td>
+                <td >
+                    <ul >
+                        <li *ngFor="let data of unit.units">{{data.unitName}} </li>
+                    </ul>
+                </td>
+                <td >
+                    <ul>
+                        <li *ngFor="let data of unit.units">{{data.totalPrice}} </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
