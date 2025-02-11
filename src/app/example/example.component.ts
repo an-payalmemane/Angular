@@ -73,7 +73,7 @@ export class ExampleComponent implements OnInit {
       if (this.form.valid) {
         this.enableTotalPriceFields();
         this.submittedData.push(this.form.value);  
-        // sessionStorage.setItem('submittedData', JSON.stringify(this.submittedData));
+        localStorage.setItem('submittedData', JSON.stringify(this.submittedData));
         alert('Form Submitted Successfully');
         this.units.clear();
         this.addUnit();
