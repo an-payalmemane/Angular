@@ -1,0 +1,59 @@
+<p>http-client works!</p>
+<table border="1">
+  <tr>
+    <th rowspan="2">Company Name</th>
+    <th rowspan="2">Country</th>
+    <th rowspan="2">Street</th>
+    <th rowspan="2">City</th>
+    <th rowspan="2">Pincode</th>
+    <th colspan="4">Units</th>
+</tr>
+
+<tr>
+    <th>Unit Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total Price</th>
+</tr>
+
+  @for (unit of data; track unit){
+  <tr>
+    <td>{{ unit.company_name }}</td>
+    <td>{{ unit.country }}</td>
+    <td>{{ unit.street }}</td>
+    <td>{{ unit.city }}</td>
+    <td>{{ unit.zipcode }}</td>
+    <td>
+      <ul>
+        @for (u of unit.units; track u){
+        <li>{{ u.unit_name}}</li>
+        }
+      </ul>
+    </td>
+    <td>
+      <ul>
+        @for (data of unit.units; track data){
+        <li>{{ data.quantity }}</li>
+        }
+      </ul>
+    </td>
+    <td>
+      <ul>
+        @for (data of unit.units; track data){
+        <li>{{ data.price }}</li>
+        }
+      </ul>
+    </td>
+    <td>
+      <ul>
+        @for (data of unit.units; track data){
+        <li>{{ data.total_price }}</li>
+        }
+      </ul>
+    </td>
+    <td><button>Edit</button> </td>
+  </tr>
+  }
+</table>
+
+<button (click)="getValues()">Get</button>

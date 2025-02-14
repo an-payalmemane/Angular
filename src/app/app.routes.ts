@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Child1Component } from './child1/child1.component';
 import { Child2Component } from './child2/child2.component';
 import { AppComponent } from './app.component';
+import { HttpClientComponent } from './http-client/http-client.component';
 export const routes: Routes = [
     { path: '', redirectTo: '/child1', pathMatch: 'full' },
     {
@@ -12,4 +13,9 @@ export const routes: Routes = [
     {
         path: 'child2',
         component: Child2Component
-    }];
+    },
+    {
+        path: 'http_client',
+        component: HttpClientComponent
+    }
+];

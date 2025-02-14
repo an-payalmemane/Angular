@@ -63,3 +63,34 @@ button:hover {
     background-color: rgb(119, 16, 16);
 
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    border: 1px solid #0f0f0f;
+}
+
+th, td {
+    padding: 10px;
+   
+}
+
+th {
+    background-color: #b0d0d4;
+    color: white;
+    text-align: center;
+}
+
+
+
+tr:hover {
+    background-color: #ddd;
+}
+
+
+
+td {
+    text-align: center;
+}

@@ -1,34 +1,66 @@
-<div *ngIf="submittedData.length > 0">
-    <h3>Form Data in Table Format</h3>
-    <div>
-      <table border="1">
-        <tr>
-          <th>Company Name</th>
-          <th>Country</th>
-          <th>Street</th>
-          <th>City</th>
-          <th>Pincode</th>
-          <th>Unit Name</th>
-          <th>Total Price</th>
-        </tr>
-        <tr *ngFor="let unit of submittedData; let i = index" >
-          <td>{{ unit.companyName }}</td>
-          <td>{{ unit.country }}</td>
-          <td>{{ unit.street }}</td>
-          <td>{{ unit.city }}</td>
-          <td>{{ unit.pincode }}</td>
-          <td>
-            <ul>
-              <li *ngFor="let data of unit.units">{{ data.unitName }}</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <li *ngFor="let data of unit.units">{{ data.totalPrice }}</li>
-            </ul>
-          </td>
-          <td><button (click)="patchForm(i)">Edit</button> </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+<h1>Company Data</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th rowspan="2">Company ID</th>
+      <th rowspan="2">Company Name</th>
+      <th rowspan="2">Country</th>
+      <th rowspan="2">Street</th>
+      <th rowspan="2">City</th>
+      <th rowspan="2">Pincode</th>
+      <th colspan="4">Units</th>
+    </tr>
+
+    <tr>
+      <th>Unit Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+
+
+  @for (unit of data; track unit; let i= $index){
+  <tbody>
+    <tr>
+      <td>{{ unit.id }}</td>
+      <td>{{ unit.company_name }}</td>
+      <td>{{ unit.country }}</td>
+      <td>{{ unit.street }}</td>
+      <td>{{ unit.city }}</td>
+      <td>{{ unit.zipcode }}</td>
+      <td>
+        <ul>
+          @for (u of unit.units; track u){
+          <li>{{ u.unit_name}}</li>
+          }
+        </ul>
+      </td>
+      <td>
+        <ul>
+          @for (data of unit.units; track data){
+          <li>{{ data.quantity }}</li>
+          }
+        </ul>
+      </td>
+      <td>
+        <ul>
+          @for (data of unit.units; track data){
+          <li>{{ data.price }}</li>
+          }
+        </ul>
+      </td>
+      <td>
+        <ul>
+          @for (data of unit.units; track data){
+          <li>{{ data.total_price }}</li>
+          }
+        </ul>
+      </td>
+      <td><button (click)="patchForm(unit.id) ">Edit</button> </td>
+     <td><button (click)="deleteValues(unit.id) ">Delete</button> </td>
+    </tr>
+  </tbody>
+  }
+</table>
