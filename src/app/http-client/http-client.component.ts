@@ -10,9 +10,27 @@ import { CompanyService } from '../company.service';
 export class HttpClientComponent implements OnInit {
  
   data: any;
-  postData: any;
+  postData: any={
+    "name": "Apple MacBook Pro 16",
+    "data": {
+       "year": 2019,
+       "price": 1849.99,
+       "CPU model": "Intel Core i9",
+       "Hard disk size": "1 TB"
+    }
+ };
   id: number= 2;
-  updateData: any;
+  D_id : number = 7;
+  updateData: any = {
+    "name": "Apple MacBook Pro 16",
+    "data": {
+       "year": 2019,
+       "price": 2049.99,
+       "CPU model": "Intel Core i9",
+       "Hard disk size": "1 TB",
+       "color": "silver"
+    }
+ };
  
   constructor (private http: CompanyService) {}
   ngOnInit(){
@@ -51,7 +69,7 @@ export class HttpClientComponent implements OnInit {
     this.getValues();
     this.postValues();
     this.updateValues(this.id, this.updateData);
-    this.deleteValues(this.id);
+    this.deleteValues(this.D_id);
   }
 
 }
